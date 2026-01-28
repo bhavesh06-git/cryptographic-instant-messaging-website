@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ADMIN SURVEILLANCE</title>
+    <style>
+        body { background: #111; color: #0f0; font-family: monospace; }
+        #network { width: 100%; height: 500px; border: 1px solid #333; background: #000; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        td, th { border: 1px solid #333; padding: 5px; }
+        th { background: #222; }
+    </style>
+    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+</head>
+<body>
+    <h1>[ADMIN] LIVE NETWORK GRAPH</h1>
+    <div id="network"></div>
+    
+    <h3>INTERCEPTED PACKETS (METADATA)</h3>
+    <table>
+        <tr><th>Time</th><th>From</th><th>To</th><th>Ciphertext Snippet</th></tr>
+        {% for m in raw_msgs %}
+        <tr>
+            <td>{{ m.timestamp }}</td>
+            <td>{{ m.sender }}</td>
+            <td>{{ m.recipient }}</td>
+            <td style="color:#666;">{{ m.ciphertext[:50] }}...</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <script type="text/javascript">
+        // Data injected from Flask
+        var nodes = new vis.DataSet({{ nodes | tojson }});
+        var edges = new vis.DataSet({{ edges | tojson }});
+
+        var container = document.getElementById('network');
+        var data = { nodes: nodes, edges: edges };
+        var options = {
+            nodes: { shape: 'dot', size: 15, color: '#00ff41', font: { color: '#ffffff' } },
+            edges: { color: '#005500', arrows: 'to' },
+            physics: { enabled: true }
+        };
+        var network = new vis.Network(container, data, options);
+    </script>
+</body>
+</html>

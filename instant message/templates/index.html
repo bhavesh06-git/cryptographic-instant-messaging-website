@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CYBER_SUITE_V3</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script src="/static/crypto.js"></script>
+    <script src="/static/stego.js"></script> <script src="/static/app.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h2 id="status-bar">SYSTEM: OFFLINE</h2>
+        
+        <div id="auth-panel">
+            <input type="text" id="username-in" placeholder="IDENTIFIER">
+            <input type="password" id="password-in" placeholder="ACCESS CODE">
+            <button onclick="registerUser()">REGISTER</button>
+            <button onclick="loginUser()">CONNECT</button>
+        </div>
+
+        <div id="chat-panel" style="display:none;">
+            <div id="connection-info">IDENTITY: <span id="my-username"></span></div>
+            <hr class="green-line">
+            <input type="text" id="recipient-in" placeholder="TARGET USER">
+            <button onclick="initiateHandshake()">LINK</button>
+            <button onclick="startVideoCall()" style="background:#0055ff; color:white;">VIDEO CALL</button> <div id="video-panel" style="display:none; border: 1px solid #333; margin:10px 0;">
+                <video id="local-video" autoplay playsinline muted style="width:45%; background:#111;"></video>
+                <video id="remote-video" autoplay playsinline style="width:45%; background:#111;"></video>
+            </div>
+
+            <div id="messages-area"></div>
+
+            <input type="text" id="message-in" placeholder="PAYLOAD...">
+            
+            <div style="border: 1px dashed #444; padding: 5px; margin-bottom: 5px;">
+                <label style="font-size:0.8em; color:#888;">[OPTIONAL] HIDE TEXT IN IMAGE (STEGANOGRAPHY):</label>
+                <input type="file" id="stego-upload" accept="image/*">
+            </div>
+
+            <div class="controls">
+                <input type="number" id="ttl-in" value="300" style="width: 50px;">
+                <button onclick="sendMessage()">SEND</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

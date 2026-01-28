@@ -1,0 +1,11 @@
+cd C:\Users\Hp\OneDrive\ドキュメント\instant message
+python app.py
+
+
+
+go to browser 
+ http://127.0.0.1:5000
+ use two browsers to show demo
+
+ to access admin panal
+ http://127.0.0.1:5000/admin

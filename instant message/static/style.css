@@ -1,0 +1,15 @@
+:root {
+    --bg-color: #050505;
+    --term-green: #00ff41;
+    --term-dim: #008f11;
+    --alert: #ff0055;
+}
+body { background: var(--bg-color); color: var(--term-green); font-family: 'Courier New', monospace; display: flex; justify-content: center; height: 100vh; margin: 0; }
+.container { width: 100%; max-width: 600px; padding: 20px; border-left: 1px solid var(--term-dim); border-right: 1px solid var(--term-dim); display: flex; flex-direction: column; }
+input, button { background: #111; border: 1px solid var(--term-green); color: var(--term-green); padding: 10px; margin-bottom: 5px; font-family: inherit; outline: none; }
+button:hover { background: var(--term-green); color: black; cursor: pointer; }
+.green-line { border-color: var(--term-green); width: 100%; }
+#messages-area { flex-grow: 1; overflow-y: auto; height: 300px; border: 1px solid #222; padding: 10px; margin-bottom: 10px; }
+.message { border-left: 2px solid var(--term-green); padding: 5px 10px; margin: 5px 0; background: #0a0a0a; word-break: break-all; }
+.controls { display: flex; gap: 5px; }
+.file-upload { margin-top: 10px; border-top: 1px dashed var(--term-dim); padding-top: 10px; }
